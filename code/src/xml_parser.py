@@ -76,7 +76,7 @@ def get_image_filename(xml_filename: str) -> str:
     """
     root = xet.parse(xml_filename).getroot()
     filename_image = root.find('filename').text
-    return os.path.join('../input/number-plate-detection/images', filename_image)
+    return os.path.join('../input/number-plates/images', filename_image)
 
 def extract_image_filenames(df: pd.DataFrame) -> list:
     """
