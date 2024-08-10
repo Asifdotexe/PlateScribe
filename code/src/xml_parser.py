@@ -1,4 +1,3 @@
-import os
 import xml.etree.ElementTree as xet
 import pandas as pd
 from glob import glob
