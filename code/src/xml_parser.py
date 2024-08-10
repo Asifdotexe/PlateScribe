@@ -63,3 +63,29 @@ def save_labels_to_csv(label_dictionary: dict, csv_path: str) -> pd.DataFrame:
     df = pd.DataFrame(label_dictionary)
     df.to_csv(csv_path, index=False)
     return df
+
+def get_image_filename(xml_filename: str) -> str:
+    """
+    Extracts the image filename from the provided XML file.
+
+    Args:
+    xml_filename (str): The path to the XML file containing the image filename.
+
+    Returns:
+    str: The image filename extracted from the XML file.
+    """
+    root = xet.parse(xml_filename).getroot()
+    filename_image = root.find('filename').text
+    return os.path.join('../input/number-plates/images', filename_image)
+
+def extract_image_filenames(df: pd.DataFrame) -> list:
+    """
+    Extracts the image filenames from the provided DataFrame containing XML file paths.
+
+    Args:
+    df (pd.DataFrame): A DataFrame object containing the parsed XML files' information. The DataFrame has a column named 'filepath' which contains the paths to the XML files.
+
+    Returns:
+    list: A list of image filenames extracted from the XML file paths in the DataFrame.
+    """
+    return df['filepath'].apply(get_image_filename).tolist()
