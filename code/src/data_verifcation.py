@@ -1,4 +1,3 @@
-import cv2
 import plotly.express as px
 from skimage import io
 
