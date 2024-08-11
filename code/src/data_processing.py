@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.preprocessing.image import load_img, img_to_array # type: ignore
 
 from src.xml_parser import extract_image_filenames
 
@@ -17,6 +17,7 @@ def process_data(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, 
     Returns:
     Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]: A tuple containing the training independent variable,
     the training dependent variable, the testing independent variable, and the testing dependent variable.
+    i.e. `x_train, x_test, y_train, y_test`
 
     The independent variable is a 2D NumPy array containing the preprocessed image data,
     while the dependent variable is a 2D NumPy array containing the normalized labels.
