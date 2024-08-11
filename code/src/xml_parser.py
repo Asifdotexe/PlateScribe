@@ -25,6 +25,7 @@ def parse_xml_files(path_pattern: str) -> dict:
         'ymin': [],
         'ymax': []
     }
+
     for filename in glob(path_pattern):
         info = xet.parse(filename)
         root = info.getroot()
