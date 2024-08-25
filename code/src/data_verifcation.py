@@ -1,9 +1,6 @@
 import plotly.express as px
 from skimage import io
 
-import plotly.express as px
-from skimage import io
-
 def verify_bounding_box(
     image_path: str,
     xmin: int,
