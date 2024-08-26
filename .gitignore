@@ -3,6 +3,8 @@ input/
 __pycache__/
 *.py[cod]
 *$py.class
+*.keras
+*.h5
 
 # C extensions
 *.so
