@@ -8,7 +8,13 @@ import pytesseract as pt
 # Load your pre-trained model
 model = tf.keras.models.load_model(r'./output/object_detection_e10.keras')
 
-def detect_objects_in_image(input_image):
+def detect_objects_in_image(input_image: Image) -> tuple:
+    """
+    Detect objects in the input image and draw bounding boxes.
+
+    :param input_image: PIL image object
+    :returns: Tuple of (image with bounding box, bounding box coordinates)
+    """
     # Convert to array and preprocess
     rgb_image_array = np.array(input_image.convert('RGB'), dtype=np.uint8)  # Ensure image is in RGB
     image_height, image_width, _ = rgb_image_array.shape
@@ -22,6 +28,10 @@ def detect_objects_in_image(input_image):
     denormalization_array = np.array([image_width, image_width, image_height, image_height])
     bounding_box_coordinates = bounding_box_coordinates * denormalization_array
     bounding_box_coordinates = bounding_box_coordinates.astype(np.int32)
+
+    # Ensure valid bounding box coordinates
+    if bounding_box_coordinates.size == 0:
+        raise ValueError("No bounding box coordinates predicted.")
 
     # Draw bounding box on the image
     xmin, xmax, ymin, ymax = bounding_box_coordinates[0]
@@ -53,29 +63,33 @@ def main():
         # Display progress bar
         progress_bar = st.progress(0)
 
-        # Object detection
-        image_with_bounding_box, bounding_box_coords = detect_objects_in_image(uploaded_image)
-        progress_bar.progress(50)
+        try:
+            # Object detection
+            image_with_bounding_box, bounding_box_coords = detect_objects_in_image(uploaded_image)
+            progress_bar.progress(50)
 
-        # Display the processed image with bounding box
-        st.image(image_with_bounding_box, caption='Processed Image', use_column_width=True)
-        progress_bar.progress(75)
+            # Display the processed image with bounding box
+            st.image(image_with_bounding_box, caption='Processed Image', use_column_width=True)
+            progress_bar.progress(75)
 
-        # Extract region of interest
-        xmin, xmax, ymin, ymax = bounding_box_coords[0]
-        region_of_interest = np.array(uploaded_image)[ymin:ymax, xmin:xmax]
+            # Extract region of interest
+            xmin, xmax, ymin, ymax = bounding_box_coords[0]
+            region_of_interest = np.array(uploaded_image)[ymin:ymax, xmin:xmax]
 
-        # Display the cropped image
-        st.image(region_of_interest, caption='Cropped Image', use_column_width=True)
-        progress_bar.progress(90)
+            # Display the cropped image
+            st.image(region_of_interest, caption='Cropped Image', use_column_width=True)
+            progress_bar.progress(90)
 
-        # Extract text from ROI using pytesseract
-        extracted_text = pt.image_to_string(region_of_interest)
-        progress_bar.progress(100)
+            # Extract text from ROI using pytesseract
+            extracted_text = pt.image_to_string(region_of_interest)
+            progress_bar.progress(100)
 
-        # Display extracted text
-        st.subheader("Extracted Text:")
-        st.text(extracted_text)
+            # Display extracted text
+            st.subheader("Extracted Text:")
+            st.text(extracted_text)
+
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
