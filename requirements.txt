@@ -81,7 +81,7 @@ pyparsing==3.1.2
 pytesseract==0.3.10
 python-dateutil==2.9.0.post0
 pytz==2024.1
-pywin32
+# pywin32
 pyzmq==26.1.0
 referencing==0.35.1
 requests==2.32.3
