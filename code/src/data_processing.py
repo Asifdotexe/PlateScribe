@@ -36,7 +36,7 @@ def process_data(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, 
         # target_size being a constant helps all the image to be loaded with the same size
         # practically standardizing the shape of all the images
         load_image = load_img(image_path, target_size=(224, 224))
-
+    
         # this normalizes the image arrays to help to model convergence and performance
         # i.e. it makes the range from 0 to 255 into the range of 0 to 1
         load_image_array = img_to_array(load_image) / 255.0
