@@ -60,6 +60,7 @@ nbformat==5.10.4
 nest-asyncio==1.6.0
 networkx==3.3
 numpy==1.26.4
+opencv-python
 opencv-contrib-python==4.10.0.84
 opencv-python-headless==4.10.0.84
 opt-einsum==3.3.0
