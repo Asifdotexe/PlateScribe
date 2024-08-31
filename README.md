@@ -8,13 +8,13 @@ PlateScribe leverages state-of-the-art object detection techniques to locate lic
 
 ## Quick Access
 
-To quickly get started with PlateScribe, visit the GitHub repository at [PlateScribe GitHub Repository](https://github.com/yourusername/PlateScribe).
+To quickly get started with PlateScribe, visit the GitHub repository at [PlayScribe App](https://github.com/yourusername/PlateScribe).
 
 ## Setup
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/PlateScribe.git
+   git clone https://github.com/Asifdotexe/PlateScribe.git
    cd PlateScribe
    ```
 
@@ -38,7 +38,7 @@ To quickly get started with PlateScribe, visit the GitHub repository at [PlateSc
 
 ## Components
 
-For detailed descriptions of each module, functions, and their purposes, please visit the [PlateScribe Wiki](link).
+For detailed descriptions of each module, functions, and their purposes, please visit the [PlateScribe Wiki](https://github.com/Asifdotexe/PlateScribe/wiki/PlateScript-Wiki).
 
 
 ## Architecture Diagram
