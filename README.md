@@ -8,7 +8,7 @@ PlateScribe leverages state-of-the-art object detection techniques to locate lic
 
 ## Quick Access
 
-To quickly get started with PlateScribe, visit the GitHub repository at [PlayScribe App](https://github.com/yourusername/PlateScribe).
+To quickly get started with PlateScribe, visit the GitHub repository at [PlateScribe App](https://github.com/yourusername/PlateScribe).
 
 ## Setup
 
