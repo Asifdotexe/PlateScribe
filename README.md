@@ -38,91 +38,59 @@ To quickly get started with PlateScribe, visit the GitHub repository at [PlateSc
 
 ## Components
 
-### 1. Modules
+For detailed descriptions of each module, functions, and their purposes, please visit the [PlateScribe Wiki](link).
 
-#### `xml_parser.py`
-
-- **Purpose**: Contains functions for parsing XML files and extracting bounding box information.
-- **Functions**:
-  - `parse_xml_files(path_pattern: str) -> dict`: Parses XML files to extract bounding box coordinates.
-  - `save_labels_to_csv(label_dictionary: dict, csv_path: str) -> pd.DataFrame`: Saves extracted bounding box information to a CSV file.
-  - `get_image_filename(xml_filename: str) -> str`: Extracts the image filename from an XML file.
-  - `extract_image_filenames(df: pd.DataFrame) -> list`: Extracts image filenames from a DataFrame.
-
-#### `bounding_box_verifier.py`
-
-- **Purpose**: Provides functionality to verify bounding boxes on images.
-- **Functions**:
-  - `verify_bounding_box(image_path: str, xmin: int, ymin: int, xmax: int, ymax: int) -> None`: Displays an image with the specified bounding box overlaid.
-
-#### `model_trainer.py`
-
-- **Purpose**: Responsible for building and training the license plate detection model.
-- **Functions**:
-  - `build_and_train_model(x_train, y_train, x_test, y_test) -> Model`: Constructs and trains the neural network model using InceptionResNetV2.
-
-#### `data_processor.py`
-
-- **Purpose**: Handles data preprocessing, including image loading and splitting.
-- **Functions**:
-  - `process_data(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]`: Processes image data and splits it into training and testing sets.
-
-#### `app.py`
-
-- **Purpose**: The main application script using Streamlit for the user interface.
-- **Functions**:
-  - `detect_objects_in_image(input_image: Image) -> tuple`: Detects objects in the uploaded image and draws bounding boxes.
 
 ## Architecture Diagram
 
 ```plaintext
-+-------------------+
-|    XML Parser     |
-|-------------------|
-| parse_xml_files() |
-| save_labels_to_csv() |
-| get_image_filename() |
++---------------------------+
+|        XML Parser         |
+|---------------------------|
+| parse_xml_files()         |
+| save_labels_to_csv()      |
+| get_image_filename()      |
 | extract_image_filenames() |
-+-------------------+
-           |
-           v
-+-------------------+
-| Bounding Box      |
-|     Verifier      |
-|-------------------|
-| verify_bounding_box() |
-+-------------------+
-           |
-           v
-+-------------------+
-|  Data Processor   |
-|-------------------|
-| process_data()    |
-+-------------------+
-           |
-           v
-+-------------------+
-|  Model Trainer    |
-|-------------------|
-| build_and_train_model() |
-+-------------------+
-           |
-           v
-+-------------------+
-|        App        |
-|-------------------|
++---------------------------+
+             |
+             v
++---------------------------+
+|       Bounding Box        |
+|         Verifier          |
+|---------------------------|
+|   verify_bounding_box()   |
++---------------------------+
+             |
+             v
++---------------------------+
+|      Data Processor       |
+|---------------------------|
+|      process_data()       |
++---------------------------+
+             |
+             v
++---------------------------+
+|      Model Trainer        |
+|---------------------------|
+|  build_and_train_model()  |
++---------------------------+
+             |
+             v
++---------------------------+
+|           App             |
+|---------------------------|
 | detect_objects_in_image() |
-+-------------------+
-           |
-           v
-+-------------------+
-| Streamlit Interface |
-|-------------------|
-| User Uploads Image |
-| Model Processes Image |
-| Bounding Boxes Displayed |
-| Extracted Text Displayed |
-+-------------------+
++---------------------------+
+             |
+             v
++---------------------------+
+|   Streamlit Interface     |
+|---------------------------|
+|    User Uploads Image     |
+|   Model Processes Image   |
+| Bounding Boxes Displayed  |
+| Extracted Text Displayed  |
++---------------------------+
 ```
 
 ## Flow of the Script
@@ -142,7 +110,7 @@ Data Processor
 Model Trainer
   |
   v
-      App
+  App
   |
   v
 Streamlit Interface
