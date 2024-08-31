@@ -3,7 +3,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.keras
+# *.keras
 *.h5
 output/logs/train/
 
