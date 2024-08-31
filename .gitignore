@@ -5,6 +5,7 @@ __pycache__/
 *$py.class
 *.keras
 *.h5
+output/logs/train/
 
 # C extensions
 *.so
