@@ -26,17 +26,17 @@ def process_data(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, 
     data = []
     output = []
 
-    labels = df.iloc[:, 1:5].values
+    labels = df.iloc[:, 1:].values
     image_paths = extract_image_filenames(df)
 
     for index, image_path in enumerate(image_paths):
         image_array = cv.imread(image_path)
-        height, width = image_array.shape[:2]
+        height, width, dimension = image_array.shape
 
         # target_size being a constant helps all the image to be loaded with the same size
         # practically standardizing the shape of all the images
         load_image = load_img(image_path, target_size=(224, 224))
-
+    
         # this normalizes the image arrays to help to model convergence and performance
         # i.e. it makes the range from 0 to 255 into the range of 0 to 1
         load_image_array = img_to_array(load_image) / 255.0
@@ -53,11 +53,11 @@ def process_data(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, 
         output.append(normalized_labels)
 
     independent_variable = np.array(data, dtype=np.float32)
-    dependent_variable = np.array(data, dtype=np.float32)
+    dependent_variable = np.array(output, dtype=np.float32)
 
     return train_test_split(
         independent_variable,
         dependent_variable,
-        test_size=0.2,
+        train_size=0.8,
         random_state=0
     )
