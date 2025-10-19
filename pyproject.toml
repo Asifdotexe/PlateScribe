@@ -1,0 +1,35 @@
+[project]
+name = "platescribe"
+version = "2.0.0"
+description = "A high-performance license plate detection and recognition pipeline using MobileNetV2, tf.data, and Streamlit."
+authors = [
+    {name = "Asif Sayyed",email = "asifdotexe@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "tensorflow (>=2.20.0,<3.0.0)",
+    "pandas (>=2.3.3,<3.0.0)",
+    "numpy (>=2,<2.3.0)",
+    "scikit-learn (>=1.7.2,<2.0.0)",
+    "opencv-python-headless (>=4.12.0.88,<5.0.0.0)",
+    "pillow (>=7.1.0,<12)",
+    "streamlit (>=1.50.0,<2.0.0)",
+    "pytesseract (>=0.3.13,<0.4.0)",
+    "huggingface-hub (>=0.35.3,<0.36.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^7.0.1"
+pylint = "^4.0.1"
+pre-commit = "^4.3.0"
+black = "^25.9.0"
+isort = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
